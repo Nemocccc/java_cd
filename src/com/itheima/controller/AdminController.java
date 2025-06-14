@@ -64,7 +64,7 @@ public class AdminController {
 							Integer a_id ,Integer pageSize, Model model) {
 
 		PageInfo<Admin> ai = adminService.findPageInfo(a_username,a_describe,
-								a_id,pageIndex,pageSize);
+				a_id,pageIndex,pageSize);
 		model.addAttribute("ai",ai);
 		return "admin_list";
 	}
@@ -73,7 +73,7 @@ public class AdminController {
 	 * 导出Excel
 	 */
 	@RequestMapping(value = "/exportadminlist" , method = RequestMethod.POST)
-    @ResponseBody
+	@ResponseBody
 	public List<Admin> exportAdmin(){
 		List<Admin> admin = adminService.getAll();
 		return admin;

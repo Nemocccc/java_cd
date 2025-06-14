@@ -18,9 +18,9 @@ import java.util.List;
 
 /**
  * @program: dormitorySystem
- * @description: 宿舍卫生控制器
- * @author: Joyrocky
- * @create: 2019-04-24 11:19
+ * @description: 宿舍卫生控制层
+ * @author: ZRJ
+ * @create: 2025-06-1 11:19
  **/
 
 @Controller
@@ -40,7 +40,7 @@ public class DormCleanController {
                                 Integer pageIndex, Integer pageSize, Model model) {
 
         PageInfo<DormClean> di = dormCleanService.findPageInfo(d_id,d_dormbuilding,
-                                            pageIndex,pageSize);
+                pageIndex,pageSize);
         model.addAttribute("di",di);
         return "dormclean_list";
     }
