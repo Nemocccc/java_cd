@@ -10,7 +10,7 @@ public class Admin {
     private  String  a_password;
 
     private  String  a_name;
-    private  Integer a_phone;
+    private  String a_phone;
 
     @JsonIgnore
     private  Integer a_power;
@@ -49,11 +49,11 @@ public class Admin {
         this.a_name = a_name;
     }
 
-    public Integer getA_phone() {
+    public String getA_phone() {
         return a_phone;
     }
 
-    public void setA_phone(Integer a_phone) {
+    public void setA_phone(String a_phone) {
         this.a_phone = a_phone;
     }
 
