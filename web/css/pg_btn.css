@@ -1,54 +1,93 @@
-/*分页按钮样式*/
-.page-go-form{
-    float: right;
-    margin-right: 40px;
-    width: 200px;
-}
-
-.page-bar{
-    width: 600px;
-    height: 30px;
-    float: right;
-}
-.page-num-ul{
-    width: 250px;
-    height: 30px;
-    padding-left: 100px;
-    float: left;
+/* 按钮颜色统一为黑色 */
+/* 调整按钮的样式，使图标和文字居中 */
+.layui-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     font-size: 14px;
 }
-.pg_a{
-    margin: 0 5px;
-}
-.pg_a:hover{
-    color: #00a4ac;
-    margin: 0 5px;
-}
-#inputPage{
-    width: 50px;
-}
-.page-btn{
-    margin: 0 3px;
-    width: 50px;
-    cursor: pointer;
-    color: #ffffff;
-    background-color: #009688;
-}
-.page-btn:hover{
-    opacity: 0.7;
-    cursor: pointer;
-    background-color: #009688;
+
+.layui-btn i {
+    font-size: 18px;  /* 调整图标大小 */
+    margin-right: 8px;  /* 图标与文字之间的间距 */
 }
 
-#f_auto{
-    margin: 0 auto;
-    margin-top: 40px;
-    width: 400px;
+.layui-btn:hover {
+    background-color: #444;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
-#btn_on{
-    width: 260px;
-    margin-left: 45px;
+
+.layui-btn-normal {
+    background-color: #222;
+    border-radius: 12px;
 }
-.f_sp{
-    letter-spacing: 16px;
+
+.layui-btn-normal:hover {
+    background-color: #333;
+}
+
+/* 按钮文字和图标居中 */
+.layui-btn i,
+.layui-btn span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+/* 首页和宿舍列表导航 */
+.x-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border-radius: 12px;
+}
+
+.layui-breadcrumb {
+    font-size: 14px;
+    color: #333;
+}
+
+.layui-breadcrumb a {
+    color: #333;
+    text-decoration: none;
+}
+
+.layui-breadcrumb a:hover {
+    color: #666;
+}
+
+/* 表格样式 */
+.layui-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+}
+
+.layui-table th,
+.layui-table td {
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+}
+
+.layui-table th {
+    background-color: #f7fafc;
+    font-weight: bold;
+}
+
+.layui-table td {
+    background-color: #fff;
 }

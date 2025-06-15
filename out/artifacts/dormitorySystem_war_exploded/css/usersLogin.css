@@ -1,118 +1,610 @@
-
-*{
+/* 重置默认样式 */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-.header{
-    background: url("../images/bti.jpg")no-repeat;
-    width: 100%;
+/* 全局样式 */
+body {
+    position: relative;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #f5f7fa; /* 可选：设置一个默认纯色背景 */
+}
+
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(3px);
+    z-index: 0;
+}
+
+.login-container {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* 主容器 */
+.login-container {
+    display: flex;
+    width: 1000px;
+    max-width: 95vw;
+    min-height: 600px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 左侧装饰区域 */
+.login-illustration {
+    flex: 1;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+/* 品牌区域 */
+.brand-section {
+    z-index: 2;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.logo-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.logo-text {
+    font-size: 24px;
+}
+
+.brand-name {
+    font-size: 32px;
+    font-weight: 600;
+    color: #2d3748;
+    letter-spacing: -0.5px;
+}
+
+.brand-tagline {
+    font-size: 24px;
+    font-weight: 500;
+    color: #4a5568;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.brand-description {
+    font-size: 16px;
+    color: #718096;
+    line-height: 1.6;
+    max-width: 300px;
+}
+
+/* 装饰插画 */
+.illustration {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     height: 200px;
+    z-index: 1;
 }
 
-.body{
-    background: url("../images/timg-1.jpg");
+.desk {
+    position: relative;
+    width: 250px;
+    height: 150px;
+}
+
+/* 电脑 */
+.computer {
+    position: absolute;
+    left: 80px;
+    bottom: 50px;
+}
+
+.screen {
+    width: 80px;
+    height: 50px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 4px;
+    border: 3px solid #2d3748;
+    position: relative;
+}
+
+.screen::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 2px;
+}
+
+.base {
+    width: 60px;
+    height: 8px;
+    background: #2d3748;
+    margin: 0 auto;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+/* 书籍 */
+.books {
+    position: absolute;
+    left: 20px;
+    bottom: 40px;
+    display: flex;
+    gap: 3px;
+}
+
+.book {
+    width: 15px;
+    height: 60px;
+    border-radius: 2px 2px 0 0;
+}
+
+.book-1 {
+    background: linear-gradient(135deg, #ffecd2, #fcb69f);
+    height: 55px;
+}
+
+.book-2 {
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+    height: 60px;
+}
+
+.book-3 {
+    background: linear-gradient(135deg, #d299c2, #fef9d7);
+    height: 50px;
+}
+
+/* 植物 */
+.plant {
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+}
+
+.pot {
+    width: 30px;
+    height: 25px;
+    background: linear-gradient(135deg, #8b5a3c, #a0522d);
+    border-radius: 0 0 15px 15px;
+}
+
+.leaves {
+    position: relative;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.leaf {
+    position: absolute;
+    width: 20px;
+    height: 15px;
+    background: linear-gradient(135deg, #4ecdc4, #44a08d);
+    border-radius: 10px 0;
+    transform-origin: bottom center;
+}
+
+.leaf-1 {
+    transform: rotate(-20deg);
+    top: -15px;
+    left: -10px;
+}
+
+.leaf-2 {
+    transform: rotate(0deg);
+    top: -20px;
+    left: -5px;
+}
+
+.leaf-3 {
+    transform: rotate(20deg);
+    top: -15px;
+    left: 0;
+}
+
+/* 右侧登录表单区域 */
+.login-form-section {
+    flex: 1;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.login-form-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 400px;
+    margin: 0 auto;
     width: 100%;
-    height: 650px;
-    margin-top: -100px;
 }
 
-.panel{
-    width: 350px;
-    height: 420px;
-    position: relative;
-    left: 800px;
-    top: 60px;
-    background-color: #FFFFFF;
-    border: 1px solid #dff0d8;
-}
-
-.top{
-    height:60px;
-    border-bottom:1px solid #dff0d8;
-}
-
-.top>p{
+/* 登录头部 */
+.login-header {
     text-align: center;
-    padding-top: 15px;
-    /*margin: 20px 0;*/
-    font-size: 25px;
-    color: #f57421;
+    margin-bottom: 40px;
 }
 
-.middle{
-    position: relative;
-    height: 290px;
-    margin: 10px 0;
-    /*background-color: red;*/
-    border-bottom:1px solid #dff0d8;
+.login-header h3 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 8px;
 }
 
-.middle>form>input{
-    height: 40px;
-    width: 290px;
-    margin: 20px 30px;
-    border: 1px solid #e0e0e0;
+.login-header p {
+    font-size: 16px;
+    color: #718096;
 }
 
-.middle>form>input:last-child{
-    background-color: #f57421;
-    font-size: 18px;
-    color: #FFFFFF;
+/* 表单样式 */
+.login-form {
+    width: 100%;
 }
 
-.middle>form>input:last-child:hover{
-    background-color: #f57421;
-    opacity: 0.7;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-.middle>form>.s1{
-    height: 40px;
-    width: 40px;
-    position: absolute;
-    left: 35px;
-    top: 40px;
-    background: url("../images/J1.PNG") no-repeat;
-}
-
-.middle>form>.s2{
-    height: 40px;
-    width: 40px;
-    position: absolute;
-    left: 35px;
-    top: 120px;
-    background: url("../images/J2.PNG") no-repeat;
-}
-
-.middle>form>.erro{
-    color: red;
+/* 错误消息 */
+.error-message {
+    background: #fed7d7;
+    color: #c53030;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-size: 14px;
-    margin-left:10px;
+    border: 1px solid #feb2b2;
 }
 
-.tail>a{
-    float: right;
-    font-size: 12px;
-    padding: 10px;
-    text-decoration:none;
-    color: black;
+.error-icon {
+    font-size: 16px;
 }
 
-.tail>a:hover{
-    color: red;
+/* 输入组 */
+.input-group {
+    margin-bottom: 24px;
 }
 
-.middle>form>.iputs:hover{
-    border:1px solid red;
+.input-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #2d3748;
+    margin-bottom: 8px;
 }
 
-.footer{
-    margin-top: 20px;
-}
-.footer>span{
-    font-size: 15px;
+.input-wrapper {
     position: relative;
-    left: 45%;
+}
+
+.input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    z-index: 2;
+    opacity: 0.6;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 16px 16px 16px 48px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 16px;
+    background: #ffffff;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.input-wrapper input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.input-wrapper input:focus ~ .input-icon,
+.input-wrapper input:not(:placeholder-shown) ~ .input-icon {
+    opacity: 1;
+    color: #667eea;
+}
+
+/* 登录按钮 */
+.login-btn {
+    width: 100%;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.arrow-icon {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.login-btn:hover .arrow-icon {
+    transform: translateX(3px);
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+/* 表单底部 */
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.remember-me input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 4px;
+    appearance: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.remember-me input[type="checkbox"]:checked {
+    background: #667eea;
+    border-color: #667eea;
+}
+
+.remember-me input[type="checkbox"]:checked::before {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.remember-me label {
+    color: #4a5568;
+    cursor: pointer;
+}
+
+.forgot-password {
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #5a67d8;
+}
+
+/* 页面底部 */
+.page-footer {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.page-footer p {
+    font-size: 14px;
+    color: #a0aec0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+        width: 95vw;
+        min-height: auto;
+    }
+
+    .login-illustration {
+        padding: 40px 20px;
+        min-height: 300px;
+    }
+
+    .brand-name {
+        font-size: 24px;
+    }
+
+    .brand-tagline {
+        font-size: 18px;
+    }
+
+    .login-form-section {
+        padding: 40px 20px;
+    }
+
+    .illustration {
+        height: 120px;
+    }
+
+    .desk {
+        transform: scale(0.8);
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 20px;
+    }
+
+    .login-container {
+        border-radius: 12px;
+    }
+
+    .login-form-section {
+        padding: 30px 20px;
+    }
+
+    .login-header h3 {
+        font-size: 24px;
+    }
+}
+
+body {
+    font-family: "Helvetica Neue", sans-serif;
+    background: #f5f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.panel {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    padding: 40px;
+    width: 300px;
+    text-align: center;
+}
+
+.panel .top p {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.input {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #2b7cff;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #1e5edc;
+}
+
+.error {
+    color: red;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* 泡泡容器定位，撑满全屏，置于背景层 */
+#bubble-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* 不阻止点击 */
+    overflow: hidden;
+    z-index: 0; /* 置于内容下面 */
+}
+
+/* 泡泡样式 */
+.bubble {
+    position: absolute;
+    bottom: -40px; /* 从底部开始动画 */
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation-name: floatUp;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+/* 泡泡浮动动画 */
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(-110vh) scale(1.2);
+        opacity: 0;
+    }
 }

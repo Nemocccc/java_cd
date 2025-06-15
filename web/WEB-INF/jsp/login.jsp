@@ -164,7 +164,7 @@
 
 <div class="bubble-bg" id="bubbleBg"></div>
 
-<div class="title">学生宿舍管理系统</div>
+<div class="title">综合服务学工平台</div>
 
 <div class="panel">
     <div class="top">
@@ -179,7 +179,7 @@
 </div>
 
 <div class="footer">
-    课程设计 JavaWeb 学生宿舍管理系统
+    课程设计 JavaWeb 综合服务学工平台
 </div>
 
 <script>

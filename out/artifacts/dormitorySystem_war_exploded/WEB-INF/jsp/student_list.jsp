@@ -1,7 +1,7 @@
 <%--
   Created by IntelliJ IDEA.
-  User: hkw
-  Date: 2018/10/31
+  User: nemo
+  Date: 2025/6/14
   Time: 14:06
   To change this template use File | Settings | File Templates.
 --%>
@@ -10,13 +10,13 @@
 
 <html>
 <head>
-    <title>后台登录</title>
+    <title>学生信息管理</title>
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-    <%--<meta http-equiv="Cache-Control" content="no-siteapp" />--%>
 
     <link rel="icon" href="/images/favicon.ico" sizes="32x32" />
+    <!-- ...existing scripts and stylesheets... -->
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/xadmin.css">
     <script type="text/javascript" src="./js/jquery-1.3.2.min.js"></script>
@@ -25,11 +25,354 @@
     <script src="/layui_exts/excel.js"></script>
 
     <style type="text/css">
-        .layui-table{
+        /* ========== 全局样式重置 ========== */
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2d3748;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ========== 导航栏样式 ========== */
+        .x-nav {
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            color: white;
+            margin-bottom: 24px;
+            align-items: center;
+            height: auto;
+        }
+
+        .layui-breadcrumb a {
+            color: rgba(255, 255, 255, 0.9) !important;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .layui-breadcrumb a:hover {
+            color: white !important;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        }
+
+        .x-nav .layui-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .x-nav .layui-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ========== 主容器样式 ========== */
+        .x-body {
+            padding: 0 24px 24px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* ========== 搜索区域样式 ========== */
+        .search-container {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .x-so {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            align-items: end;
+        }
+
+        .x-so .layui-input {
+            height: 44px;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            padding: 0 20px;
+            font-size: 14px;
+            background: #f8fafc;
+            color: #2d3748;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .x-so .layui-input:focus {
+            border-color: #2d3748;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(45, 55, 72, 0.1);
+            outline: none;
+        }
+
+        .x-so .layui-btn {
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            border: none;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(45, 55, 72, 0.3);
+        }
+
+        .x-so .layui-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(45, 55, 72, 0.4);
+        }
+
+        /* ========== 工具栏样式 ========== */
+        xblock {
+            background: white;
+            border-radius: 20px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .x-right {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            color: #2d3748;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        #addStudnetBtn {
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 0 24px;
+            height: 44px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(45, 55, 72, 0.3);
+            margin-right: 12px;
+        }
+
+        #addStudnetBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(45, 55, 72, 0.4);
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+        }
+
+        .layui-btn-warm {
+            background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 0 24px;
+            height: 44px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(113, 128, 150, 0.3);
+        }
+
+        .layui-btn-warm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(113, 128, 150, 0.4);
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+        }
+
+        /* ========== 表格样式 ========== */
+        .layui-table {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .layui-table th {
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+            padding: 16px 12px;
+            border: none;
+        }
+
+        .layui-table td {
+            color: #2d3748;
+            font-size: 14px;
+            padding: 16px 12px;
+            border-bottom: 1px solid #f7fafc;
+            font-weight: 500;
+        }
+
+        .layui-table tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        .layui-table tbody tr:hover {
+            background: #f8fafc;
+            transform: scale(1.01);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* ========== 操作按钮样式 ========== */
+        .layui-table a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            margin: 0 4px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid transparent;
+        }
+
+        .layui-table a[title="编辑"] {
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(45, 55, 72, 0.3);
+        }
+
+        .layui-table a[title="编辑"]:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(45, 55, 72, 0.4);
+        }
+
+        .layui-table a[title="删除"] {
+            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(229, 62, 62, 0.3);
+        }
+
+        .layui-table a[title="删除"]:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(229, 62, 62, 0.4);
+        }
+
+        /* ========== 模态框样式 ========== */
+        .layui-form {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+        }
+
+        .layui-form-item {
+            margin-bottom: 20px;
+        }
+
+        .layui-form-label {
+            color: #2d3748;
+            font-weight: 600;
+            border-radius: 8px 0 0 8px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-right: none;
+        }
+
+        .layui-input-block .layui-input {
+            border-radius: 0 8px 8px 0;
+            border: 1px solid #e2e8f0;
+            border-left: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .layui-input-block .layui-input:focus {
+            border-color: #2d3748;
+            box-shadow: 0 0 0 3px rgba(45, 55, 72, 0.1);
+        }
+
+        .layui-btn-normal {
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(45, 55, 72, 0.3);
+        }
+
+        .layui-btn-normal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(45, 55, 72, 0.4);
+        }
+
+        .layui-btn-primary {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            color: #2d3748;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .layui-btn-primary:hover {
+            background: #f8fafc;
+            border-color: #2d3748;
+            color: #2d3748;
+            transform: translateY(-2px);
+        }
+
+        /* ========== 响应式设计 ========== */
+        @media (max-width: 768px) {
+            .x-body {
+                padding: 0 16px 16px;
+            }
+            
+            .x-so {
+                grid-template-columns: 1fr;
+            }
+            
+            xblock {
+                flex-direction: column;
                 text-align: center;
             }
-        .layui-table th{
-            text-align: center;
+        }
+
+        /* ========== 动画效果 ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-container,
+        xblock,
+        .layui-table {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        xblock {
+            animation-delay: 0.1s;
+        }
+
+        .layui-table {
+            animation-delay: 0.2s;
         }
     </style>
 </head>
@@ -44,7 +387,7 @@
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
 <div class="x-body">
-    <div class="layui-row">
+    <div class="search-container">
         <form class="layui-form layui-col-md12 x-so" action="/findStudent" >
             <input class="layui-input" placeholder="请输入姓名" name="s_name" id="s_name">
             <input class="layui-input" placeholder="请输入学号" name="s_studentid" id="s_studentid">
@@ -53,12 +396,14 @@
 
             <input class="layui-input" type="hidden" name="pageIndex" value="1">
             <input class="layui-input" type="hidden" name="pageSize" value="3">
-            <button class="layui-btn"  lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
+            <button class="layui-btn"  lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i>搜索</button>
         </form>
     </div>
     <xblock>
-        <button id="addStudnetBtn" class="layui-btn layui-btn-normal"> <i class="layui-icon">&#xe654;</i>添加 </button>
-        <button class="layui-btn layui-btn-warm" lay-filter="toolbarDemo" lay-submit=""><i class="layui-icon">&#xe67c;</i>导出</button>
+        <div>
+            <button id="addStudnetBtn" class="layui-btn layui-btn-normal"> <i class="layui-icon">&#xe654;</i>添加 </button>
+            <button class="layui-btn layui-btn-warm" lay-filter="toolbarDemo" lay-submit=""><i class="layui-icon">&#xe67c;</i>导出</button>
+        </div>
         <span class="x-right" style="line-height:40px">共有数据：${pi.totalCount} 条</span>
     </xblock>
 
@@ -85,7 +430,6 @@
                     <div class="layui-input-block">
                         <input type="radio" name="s_sex" value="男" title="男" checked="">
                         <input type="radio" name="s_sex" value="女" title="女">
-                        <%--<input type="text" name="s_sex" class="layui-input" id="s_sex" placeholder="请输入性别">--%>
                     </div>
                 </div>
 
@@ -161,7 +505,6 @@
                     <div class="layui-input-block">
                         <input type="radio" name="s_sex" id="edit_sex" value="男" title="男" checked="">
                         <input type="radio" name="s_sex" id="edit_sex" value="女" title="女">
-                        <%--<input type="text" name="s_sex" class="layui-input" id="s_sex" placeholder="请输入性别">--%>
                     </div>
                 </div>
 
@@ -215,9 +558,6 @@
     <table class="layui-table">
         <thead>
         <tr>
-            <%--<th>--%>
-                <%--<div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>--%>
-            <%--</th>--%>
             <th>ID</th>
             <th>学号</th>
             <th>姓名</th>
@@ -232,9 +572,6 @@
         <tbody>
 <c:forEach items="${pi.list}" var="student">
         <tr>
-            <%--<td>--%>
-                <%--<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>--%>
-            <%--</td>--%>
             <td>${student.s_id}</td>
             <td>${student.s_studentid}</td>
             <td>${student.s_name}</td>
@@ -245,7 +582,7 @@
             <td>${student.s_classname}</td>
             <td>${student.s_dormitoryid}</td>
             <td>
-                <a title="编辑"    id= "updateEdit"    href="/findStudentById?s_id=${student.s_id}">
+                <a title="编辑" id="updateEdit" href="/findStudentById?s_id=${student.s_id}">
                     <i class="layui-icon">&#xe642;</i>
                 </a>
                 <a title="删除" onclick="member_del(this,'${student.s_id}')" href="javascript:;">
@@ -266,6 +603,7 @@
     </c:import>
 </div>
 </div>
+
 <script>
 
     layui.config({
@@ -390,7 +728,7 @@
                   setTimeout(function () {window.location.href='/findStudent';},2000);
 
                 }else {
-                    layer.msg('删除失败!',{icon:1,time:3000});
+                    layer.msg('删除失败!',{icon:0,time:3000});
                     setTimeout(function () {window.location.href='/findStudent';},2000);
                 }
             });

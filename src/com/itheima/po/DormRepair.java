@@ -13,7 +13,7 @@ import java.util.Date;
 public class DormRepair {
     private int r_id;
     private int d_id;
-    private int d_dormbuilding;
+    private String d_dormbuilding;
     private String r_name;
     private String reason;
 
@@ -38,11 +38,11 @@ public class DormRepair {
         this.d_id = d_id;
     }
 
-    public int getD_dormbuilding() {
+    public String getD_dormbuilding() {
         return d_dormbuilding;
     }
 
-    public void setD_dormbuilding(int d_dormbuilding) {
+    public void setD_dormbuilding(String d_dormbuilding) {
         this.d_dormbuilding = d_dormbuilding;
     }
 

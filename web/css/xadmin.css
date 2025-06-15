@@ -27,7 +27,6 @@ body{
     padding: 0 20px;
     position: relative;
     z-index: 99;
-    border-bottom: 1px solid #e5e5e5;
     line-height: 39px;
     height: 39px;
     overflow: hidden;
@@ -199,7 +198,6 @@ xblock{
     max-width: 220px;
     overflow: auto;
     overflow-x:hidden;
-    border-right: 1px solid #e5e5e5;
 
     /*width: 0px;*/
 }
@@ -319,9 +317,7 @@ xblock{
 .page-content .layui-tab-title li .layui-tab-close{
     border-radius: 50%;
 }
-.page-content .layui-tab-title .layui-this{
-    background: #fff url(#) 0 0 no-repeat;
-}
+
 .page-content .layui-tab-bar{
     height:34px;
     line-height: 35px;
