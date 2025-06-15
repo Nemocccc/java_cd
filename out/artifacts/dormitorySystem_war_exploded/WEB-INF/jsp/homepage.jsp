@@ -850,8 +850,6 @@
             leftOpen.addEventListener('click', function() {
                 if (leftNav.style.transform === 'translateX(-100%)') {
                     leftNav.style.transform = 'translateX(0)';
-                    pageContent.style.marginLeft = '240px';
-                    footer.style.marginLeft = '240px';
                 } else {
                     leftNav.style.transform = 'translateX(-100%)';
                     pageContent.style.marginLeft = '0';
